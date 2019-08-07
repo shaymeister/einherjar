@@ -1,0 +1,89 @@
+#CHANGELOG
+
+8/4/19 - Shay Snyder (final update as orise participant)
+- V 1.0.0
+
+    Einherjar has undergone a monumental transformation. Now, Einherjar is able to access data from three data sources: csv, sqlite3, and postgres. A parser is built in with an added checking system. It informs the user of the way in which Einherjar will function given the various arguments. Using ALtair, interactive vega graphics have been implemented. Furthermore, the plots from matplotlib have been further refined. Vega Graphics have been updated to display the number of interactions per data table. 
+
+
+6/26/2019 Shay Snyder 7vs@ornl.gov
+- V 0.1.0
+- 9 modules were imported: os, sys, pandas, matplotlib.pyplot as plt,
+    numpy as np, re, scipy.stats as stats, from math e was imported, 
+    and openpyxl
+    -os: allows interaction with the oporating system
+        used to check the file path of the imported data
+    -sys: allows manipulation of the runtime environment
+        used to count the number of arguments specifed by the user
+        used only when the function is executed by itself using shebang
+    -pandas: allows the user to manipulate large amounts of data in the form of a dataframe
+        used to interpret from a .csv file to a dataframe
+        also used to manipulate the data with various columns and rows
+    -matplotlib.pyplot as plt: allows for data visualization
+        used to plot various histograms and line graphs of database queries
+    -numpy as np: basically a ti calculator for python
+        used to calculate the mean and standard of deviation of our data
+    -re: allows uses of regular expressions to filter data
+        used to extract numerical characters from the column 'Latency (ms)'
+    -scipy.stats as stats: allows for various complex data calculations
+        used to calculate the normal distribution of our data
+    -from math, e was imported to defined euler's number
+        used to change xscale of a subplotted graph to log base e
+    -openpyxl: allows for python interpretation and designation of Microsoft Excel .xlsx files
+        used to export our transformed data to .xlsx
+
+-function importData:
+    import our data from a .csv to a pandas dataframe
+    the file path of the designated file to compared to that of the theroetical
+        if the file path is correct, the program will proceed
+            the file is imported from the designated .csv and the column headers are defined:'Log Time w/ TZ','Username','Database Name',
+                'Process id','Connection from', 'Session id','Session Line #', 'Command Tag', 'Session Start Time w/ TZ',
+                'Virtual Transaction id','Transaction id','Error Severity','SQL State Code','Latency (ms)','Detail','Hint','Internal Query',
+                'Internal Queary Position','Context','Query','Query Position','Location' and, 'Application Name'
+            all rows within the 'Latency (ms)' column whose value equals 'SELECT','PARSE','INSERT', or 'BIND' will remain while the others are removed
+            all rows within 'Latency (ms)', using a regular expression, will be thinned down to just numerical characters
+            all rows within 'Latency (ms)' will have their type atrribute set to float and all null values will be dropped
+            'Latency (ms)' will be sorted by value in descending order 
+            the variable out will be set to true
+            both variables out and charted_data will be return the to the runtime environment
+
+        else: if the file path is incorrect, a string will be printed to inform the user of the failure to import data       
+            out will the set to false
+            the varuable out will be returned to the runtime environment 
+
+-function plotData:
+    we assign the columm 'Latency (ms)' in the charted_data data frame to the variable plot_data
+    the plot figure is created
+    using numpy, we calculate the mean of plot_data
+    using numpy, we calculate the std of plot_data
+    using scipy and the previous calculations, we calculated the normal distribution of plot_data
+    the title of the figure is set to 'Distribution of Latency Across Different Queries\nX = Time (ms) Y = Probability (%)' 
+
+    create a subplot is 221
+    plot a line graph of plot data
+   
+    create a subplot in 222
+    create a histogram with 20 bins
+    plot the histigram on the figure
+
+    create a subplot in 223
+    plot a line graph of plot_data with an x-axis of log base 2
+
+    create a subplot in 223
+    plot a line graph og plot_data with an x-axis of log base e
+    change the rotation of the x-axis tick marks to vertical
+
+    save the figure to queries_plot.pdf
+ 
+-function transformPlotData:
+    create another variable to sort charted_data is ascending order
+    export charted_data to merged_data.csv
+    create a variable x to represent n_queries as type int
+    create a varibale y to represent n_queries as type str
+    export the previously defined number of the slowest and fastest queries to .csv and .xslx files.
+   
+-if __name__ == __main__
+    checks to see if the file is executed by itself
+        defines the ways in wich the user can imput arguments into the program
+    the can define two things, fname, and queries. 
+    if the user fails to enter the arguments, the program defualt to postgresql-Thu.csv and 100
