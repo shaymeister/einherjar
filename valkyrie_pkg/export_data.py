@@ -92,7 +92,7 @@ def exportData(
 
                 # export top x exportSlowest queries to .csv
                 data.head(x).to_csv(
-                    "results/" + y + "_exportSlowest_queries.csv"
+                    "results/" + y + "_slowest_queries.csv"
                 )
 
                 # inform user of program progress
