@@ -1,81 +1,151 @@
 #!/usr/bin/env python3
-import einherjar_parser
-import export_data
-import import_data
-import parser_test
-import plot_data
-import transform_data
-import vega_graphics
-import argparse
+import argparse 
 import sys
+
+from valkyrie_pkg import einherjar_parser
+from valkyrie_pkg import export_data
+from valkyrie_pkg import import_data
+from valkyrie_pkg import parser_test
+from valkyrie_pkg import plot_data
+from valkyrie_pkg import transform_data
+from valkyrie_pkg import vega_graphics
+
 
 
 def main():
     """The core functionality of einherjar"""
-    # defining args using argparse
+
+    # einherjar_parser is a custum parser created specifically for
+    # this program. Using argparse, this script was created to
+    # define and manage the necessary variables for einherjar
+    # to function properly. 
     args = einherjar_parser.parsargs()
 
-# -----> testing arguments
-    if args.volume == False:
+    # By default, args.volume will be set to true. This enables
+    # einherjar to take the variables from the parser and present
+    # the information in a presentable display, informing the user
+    # of the specifications by which this program will execute.
+    # args.volume can be toggled to false by using the correct flag.
+    if not args.volume:
         parser_test.parserTest(
-                        args,
-                        args.verbose)
+            args,
+            args.verbose,
+        )
 
-# -----> calling functions
-    # calling importData()
+    # Here: the variables from einherjar_parser are being explicity
+    # defined. This was done to increase the explicity of the program
+    # A detailed explanation of these variable can be found within the
+    # parser itself. There, the variable's abilities and description
+    # are outlined.
+    cmdTag = args.cmdTag
+    columnNames = args.columnNames
+    connection = args.connection
+    createPlots = args.createPlots
+    desiredColumns = args.desiredColumns
+    desiredTable = args.desiredTable
+    duration = args.duration
+    execExport = args.execExport
+    exportFastest = args.exportFastest
+    exportFileType = args.exportFileType
+    exportSlowest = args.exportSlowest
+    filePath = args.filePath
+    fileTypePlots = args.fileTypePlots
+    hasHeaders = args.hasHeaders
+    id1 = args.id1
+    id2 = args.id2
+    importDataType = args.importDataType
+    numberOfQueries = args.numberOfQueries
+    parameters = args.parameters
+    skimData = args.skimData
+    sql = args.sql
+    vegaGraphics = args.vegaGraphics
+    verbose = args.verbose
+    volume = args.volume
+
+
+    # Calling importData() which is located within the valkyrie_pkg
+    # This function will import data from a variety of sources.
+    # Said source will be determined given the user's arguments
+    # The user's data will be returned as a dataframe and assigned
+    # to the data variable. This variable will be used to move the 
+    # dataframe throughout the rest of the program
     data = import_data.importData(
-        args.column_names,
-        args.connection,
-        args.datatype,
-        args.fpath,
-        args.has_headers,
-        args.desired_columns,
-        args.desired_table,
-        args.verbose)
-    # calling transformData()
-    transformed_data = transform_data.transformData(
-        data,
-        args.sql,
-        args.duration,
-        args.id1,
-        args.id2,
-        args.cmd_tag,
-        args.verbose)
-    if args.verbose >= 1:
-        print("The core functionality of einherjar is completed\nStarting optional functionality")
+        columnNames,
+        connection,
+        desiredColumns,
+        desiredTable,
+        filePath,
+        hasHeaders,
+        importDataType,
+        verbose,
+    )
 
-# -----> here: the user has the option to visualize their data using vega graphics
-    if args.exec_vega == True:
+    # Calling transformData() which is located within the valkyrie_pkg
+    # This function will take the aforementioned dataframe and extract
+    # the necessary data. This "transformed" data will be assigned to
+    # the transformedData variable
+    transformedData = transform_data.transformData(
+        cmdTag,
+        data, 
+        duration,
+        id1,
+        id2,
+        sql,
+        verbose,
+    )
+
+    # inform user of program progress
+    if verbose >= 1:
+        print(
+            "The core functionality of einherjar is completed\n"
+          + "Starting optional functionality"
+        )
+
+    # the user has the option to visualize 
+    # their data using vega graphics
+    if vegaGraphics:
         vega_graphics.vegaGraphics(
-            transformed_data,
-            args.verbose,
-            args.cmd_tag,
-            args.sql,
-            args.id1,
-            args.id2,
-            args.parameters)
+            cmdTag,
+            id1,
+            id2,
+            parameters,
+            sql,
+            transformedData,
+            verbose,
+        )
 
-# -----> here: the user has the option to visualize their data using matplotlib
-    if args.plots == True:
+    # The user has the option to visualize their data using matplotlib
+    # If the user decided to use this functionality, their data will be
+    # visualized in the plotData() function within valkyrie_pkg
+    if createPlots:
         plot_data.plotData(
-            transformed_data,
-            args.ftype_plots,
-            args.verbose)
+            fileTypePlots,
+            transformedData,
+            verbose,
+        )
 
-# -----> here: the user has the option to export the recently maniplated data
-    if args.exec_export == True:
+    # Here, the user has the option to export the manilpated data into
+    # its raw format; they also have the ability to export x number of
+    # the fastest and/or slowest queries from their database.
+    if execExport:
         export_data.exportData(
-            transformed_data,
-            args.slowest,
-            args.fastest,
-            args.ftype_data,
-            args.verbose,
-            args.n_queries,
-            args.skim_data)
+            exportFastest,
+            exportFileType,
+            exportSlowest,
+            numberOfQueries,
+            skimData,
+            transformedData,
+            verbose,
+        )
 
-    if args.verbose >= 1:
-        print("optional funcations have been completed\nEinherjar is 100% COMPLETE")
+    # inform user of program completion
+    if verbose >= 1:
+        print(
+            "Optional functions have been completed\n" 
+              + "Einherjar is 100% COMPLETE"
+        )
 
-
-if __name__ == '__main__':
+# This if statement checks if the script is executed by itself
+# If so, the main method will be called.
+if __name__ == "__main__":
     main()

@@ -1,9 +1,20 @@
 #CHANGELOG
+11/2/19 - Shay Snyder
+- V 1.1.0
+
+    added documentation to successfully export your data when Docker is utilized
+    added more documentation within the code
+    program can be ran w/ or w/out Docker
 
 8/4/19 - Shay Snyder (final update as orise participant)
 - V 1.0.0
 
-    Einherjar has undergone a monumental transformation. Now, Einherjar is able to access data from three data sources: csv, sqlite3, and postgres. A parser is built in with an added checking system. It informs the user of the way in which Einherjar will function given the various arguments. Using ALtair, interactive vega graphics have been implemented. Furthermore, the plots from matplotlib have been further refined. Vega Graphics have been updated to display the number of interactions per data table. 
+    Einherjar has undergone a monumental transformation. Now, Einherjar is able to access data from 
+    three data sources: csv, sqlite3, and postgres. A parser is built in with an added checking 
+    system. It informs the user of the way in which Einherjar will function given the various 
+    arguments. Using ALtair, interactive vega graphics have been implemented. Furthermore, the plots
+    from matplotlib have been further refined. Vega Graphics have been updated to display the number
+    of interactions per data table. 
 
 
 6/26/2019 Shay Snyder 7vs@ornl.gov
@@ -36,18 +47,22 @@
     import our data from a .csv to a pandas dataframe
     the file path of the designated file to compared to that of the theroetical
         if the file path is correct, the program will proceed
-            the file is imported from the designated .csv and the column headers are defined:'Log Time w/ TZ','Username','Database Name',
-                'Process id','Connection from', 'Session id','Session Line #', 'Command Tag', 'Session Start Time w/ TZ',
-                'Virtual Transaction id','Transaction id','Error Severity','SQL State Code','Latency (ms)','Detail','Hint','Internal Query',
-                'Internal Queary Position','Context','Query','Query Position','Location' and, 'Application Name'
-            all rows within the 'Latency (ms)' column whose value equals 'SELECT','PARSE','INSERT', or 'BIND' will remain while the others are removed
+            the file is imported from the designated .csv and the column headers are defined:
+                'Log Time w/ TZ','Username','Database Name', 'Process id','Connection from', 
+                'Session id','Session Line #', 'Command Tag', 'Session Start Time w/ TZ',
+                'Virtual Transaction id','Transaction id','Error Severity','SQL State Code',
+                'Latency (ms)','Detail','Hint','Internal Query', 'Internal Queary Position',
+                'Context','Query','Query Position','Location' and, 'Application Name'
+            all rows within the 'Latency (ms)' column whose value equals 'SELECT','PARSE','INSERT', 
+                or 'BIND' will remain while the others are removed
             all rows within 'Latency (ms)', using a regular expression, will be thinned down to just numerical characters
             all rows within 'Latency (ms)' will have their type atrribute set to float and all null values will be dropped
             'Latency (ms)' will be sorted by value in descending order 
             the variable out will be set to true
             both variables out and charted_data will be return the to the runtime environment
 
-        else: if the file path is incorrect, a string will be printed to inform the user of the failure to import data       
+        else: if the file path is incorrect, 
+            a string will be printed to inform the user of the failure to import data       
             out will the set to false
             the varuable out will be returned to the runtime environment 
 
@@ -57,7 +72,8 @@
     using numpy, we calculate the mean of plot_data
     using numpy, we calculate the std of plot_data
     using scipy and the previous calculations, we calculated the normal distribution of plot_data
-    the title of the figure is set to 'Distribution of Latency Across Different Queries\nX = Time (ms) Y = Probability (%)' 
+    the title of the figure is set to 
+        'Distribution of Latency Across Different Queries\nX = Time (ms) Y = Probability (%)' 
 
     create a subplot is 221
     plot a line graph of plot data

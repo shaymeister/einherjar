@@ -13,7 +13,7 @@ Einherjar will display the details of the query within a dialog box.
 ![Vega Graphics](/images/altair.png?raw=true "Queries")
 
 # Installation
-Einherjar is currently tested on the Windows Subsystem for Linux(UBUNTU) and Red Hat
+Einherjar is currently tested on the Windows Subsystem for Linux(UBUNTU), Ubuntu, and Red Hat
 To install from a fresh linux terminal:
 ``` 
     sudo apt update
@@ -32,10 +32,7 @@ To install from a fresh linux terminal:
 Now you can run einherjar using "python3 einherjar <-options>" or "./einherjar.py <-options>"
 
 # Usage
-The program will automatically default to importing data from the sample-data.csv file 
--Matplotlib will be "disabled" 
--The exportData function will be "disabled"
--The skimmed exportation of data will also be "disabled"
+The program will automatically default to importing data from the postgresql-Thu.csv file 
 -The program also required the specification of the columns that contain the various data types
   One that contains the query enacted upon the database
   One that holds the duration of said query
@@ -54,7 +51,7 @@ usage: einherjar.py [-h] [-d {csv,sqlite3,postgres}] [-f FPATH]
                     [--plots | --no-plots] [--export | --no-export]
                     [--skim | --no-skim] [--fastest | --no-fastest]
                     [--slowest | --no-slowest] [--vega | --no-vega]
-                    [--silent | --loud] [--ml | --no-ml]
+                    [--silent | --loud]
 
 Methods to visualize and identify those who may join the ranks of the einherjar
 in valhalla
@@ -121,17 +118,21 @@ If the user would like to access a postgres database, the last major argument is
 -using the "-c" flag, the user will create a string with the means of connecting to a postgres database 
 Link to Altair documentation: https://altair-viz.github.io
 Link to Matplotlib documentation: https://matplotlib.org
-## Docker
-To utilize docker and connect to valkyrievm01, use the following commands:
+
+# Docker
+To utilize docker, use the following commands:
 ```
 $ docker build -t einherjar .
-$ docker run --net=api_default -it --rm einherjar
+$ docker run -it einherjar
+$ docker cp <container id>:results <path/to/results/directory>
 ```
 
 # Support 
 For future support, users can contact me via my github handle "shaymeister" or email shaymeister@hotmail.com
+
 # License
 MIT
+
 # Roadmap
 Einherjar has many features that are currently being developed.
 Such as: the ability to connect to a wider variety of databases a dashboard build using Flask,machine learning to predict a user defined query, and much much more!
