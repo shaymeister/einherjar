@@ -13,7 +13,7 @@ Einherjar will display the details of the query within a dialog box.
 ![Vega Graphics](/images/altair.png?raw=true "Queries")
 
 # Installation
-Einherjar is currently tested on the Windows Subsystem for Linux(UBUNTU), Ubuntu, and Red Hat
+Einherjar is currently tested on the Windows Subsystem for Linux(UBUNTU), and Red Hat
 To install from a fresh linux terminal:
 ``` 
     sudo apt update
@@ -32,6 +32,7 @@ To install from a fresh linux terminal:
 Now you can run einherjar using "python3 einherjar <-options>" or "./einherjar.py <-options>"
 
 # Usage
+YOU MUST DECOMPRESS THE FILE WITHIN THE DATA DIRECTORY
 The program will automatically default to importing data from the postgresql-Thu.csv file 
 -The program also required the specification of the columns that contain the various data types
   One that contains the query enacted upon the database
@@ -120,7 +121,7 @@ Link to Altair documentation: https://altair-viz.github.io
 Link to Matplotlib documentation: https://matplotlib.org
 
 # Docker
-To utilize docker, use the following commands:
+To utilize docker, use the following commands along with decompressing the .csv within the data directory:
 ```
 $ docker build -t einherjar .
 $ docker run -it einherjar
