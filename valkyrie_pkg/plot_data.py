@@ -22,7 +22,7 @@ def plotData(
             "Plotting Data"
         )
 
-    mpl.use("Agg")  # Force matplotlib to not use any Xwindows backend
+    mpl.use("Agg")  # Force matplotlib to not use any windows backend
     data = transformedData
     data = data.sort_values(
                     by = ["total_duration"],

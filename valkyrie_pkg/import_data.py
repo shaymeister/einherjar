@@ -68,7 +68,7 @@ def importData(
             )
             sys.exit()
 
-# -----> sqlitee database
+# -----> sqlite database
     elif importDataType == "sqlite3":
         # attempt to import data using importSqlite3() function
         try:

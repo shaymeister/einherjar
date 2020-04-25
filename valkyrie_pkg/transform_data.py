@@ -15,7 +15,7 @@ def transformData(
         id2,
         sql,
         verbose):
-    """Use other functions to extrcat desired data from database"""
+    """Use other functions to extract desired data from database"""
     # making function more explicit
     cmdTag = cmdTag
     data = data

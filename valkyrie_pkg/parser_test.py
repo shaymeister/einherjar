@@ -9,8 +9,8 @@ def parserTest(einherjar_parser, volume):
 # -----> defining variables from the parser
     args = einherjar_parser
 
-    # Here: the variables from einherjar_parser are being explicity
-    # defined. This was done to increase the explicity of the program
+    # Here: the variables from einherjar_parser are being explicitly
+    # defined. This was done to increase the explicitly of the program
     # A detailed explanation of these variable can be found within the
     # parser itself. There, the variable's abilities and description
     # are outlined.
@@ -53,7 +53,7 @@ def parserTest(einherjar_parser, volume):
 
         else:
             print(
-                "File pathn to your " + importDataType + " file: " + filePath
+                "File path to your " + importDataType + " file: " + filePath
             )
 
         headerTest = True
@@ -125,7 +125,7 @@ def parserTest(einherjar_parser, volume):
             + "database_name,process_id,connection_from,session_id," \
             + "session_line_number,command_tag," \
             + "session_start_time_with_tz,virtual_transaction_id," \
-            + "transaction_id,error_sensetivity,sql_state_code,latency," \
+            + "transaction_id,error_sensitivity,sql_state_code,latency," \
             + "detail,hint,internal_query,internal_query_position," \
             + "context,query,query_position,location,application_name":
             print(

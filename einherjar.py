@@ -15,7 +15,7 @@ from valkyrie_pkg import vega_graphics
 def main():
     """The core functionality of einherjar"""
 
-    # einherjar_parser is a custum parser created specifically for
+    # einherjar_parser is a custom parser created specifically for
     # this program. Using argparse, this script was created to
     # define and manage the necessary variables for einherjar
     # to function properly. 
@@ -32,8 +32,8 @@ def main():
             args.verbose,
         )
 
-    # Here: the variables from einherjar_parser are being explicity
-    # defined. This was done to increase the explicity of the program
+    # Here: the variables from einherjar_parser are being explicitly
+    # defined. This was done to increase the explicitly of the program
     # A detailed explanation of these variable can be found within the
     # parser itself. There, the variable's abilities and description
     # are outlined.
@@ -124,7 +124,7 @@ def main():
             verbose,
         )
 
-    # Here, the user has the option to export the manilpated data into
+    # Here, the user has the option to export the manipulated data into
     # its raw format; they also have the ability to export x number of
     # the fastest and/or slowest queries from their database.
     if execExport:

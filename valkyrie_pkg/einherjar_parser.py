@@ -56,7 +56,7 @@ def parsargs():
         "--id2",
         dest = "id2",
         type = str,
-        help = "Which column can be used as second unique indentification?",
+        help = "Which column can be used as second unique identification?",
     )
     parser.add_argument(
         "--cmd",
@@ -73,7 +73,7 @@ def parsargs():
         choices = [
             "pdf",
             "html"],
-        help = "Specifity the filetype of the exported plots",
+        help = "Specify the filetype of the exported plots",
     )
 
 # -----> export raw data files
@@ -164,7 +164,7 @@ def parsargs():
         "--no-plots",
         dest = "createPlots",
         action = "store_false",
-        help = "Don't use matplotlib to exprrt your data",
+        help = "Don't use matplotlib to export your data",
     )
 
 	# would the user like to export the raw data
