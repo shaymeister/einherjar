@@ -1,5 +1,5 @@
 # defines the runtime environment for einherjar.py
-FROM python:3.7.7-stretch
+FROM python:3.7.11-stretch
 ADD requirements.txt ./
 ADD einherjar.py ./
 ADD valkyrie_pkg /valkyrie_pkg
